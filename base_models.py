@@ -11,6 +11,11 @@ s - skin
 e - eye
 t - teeth
 d - du zi
+.
+.
+.
+
+
 '''
 
 
