@@ -3,8 +3,14 @@
 ## Intro
 This repo is designed and created by us. It generates cool and meaningful bit dinosaurs in different designs and tiers. We aim to design our bit dino to fit today's fashions (we hope so), and to embody meaningful arts in each of the generated bit dinos because our ultimate goal is to make each of our bit dino be one of your valuable collections.
 
-## xxx 
+## Dependencies
+To install required libraries, do this:
+```
+pip install -r requirements.txt
+```
 
+## Tiers
+![Bit Dino Tiers](images/bitdino.jpg)
 
 
 ## Words at the end: 
