@@ -9,6 +9,8 @@ import requests
 import webcolors
 from PIL import Image
 from webcolors import CSS3_HEX_TO_NAMES
+import pandas as pd
+from tabulate import tabulate
 
 from base_models import base_models
 
@@ -27,7 +29,6 @@ def closest_colour(color):
         bd = (b_c - color[2]) ** 2
         min_colours[(rd + gd + bd)] = name
     return min_colours[min(min_colours.keys())]
-
 
 def get_colour_name(requested_colour):
     try:
@@ -63,18 +64,29 @@ t = (255,255,255)
 
 md5 = hashlib.md5() ###################IMPORTANT#####################
 
-database = {}
-reader = csv.reader(open('pixel_dino_database.csv', 'r'))
-for row in reader:
-    if row:
-        k, v = row
-        database[k] = v
+print("\n###############")
+print("#Loading DB...#")
+print("###############")
+
+try:
+    database = pd.read_csv('pixel_dino_database.csv')
+except pd.errors.EmptyDataError:
+    print("\nCSV file is empty...")
+    database = []
+    generated_dino = []
+else:
+    print("\nDatabase loaded successfully!")
+    generated_dino = database['Image'].tolist()
 
 '''
 Generate pixel dino
 '''
+
+print("\n###############")
+print("#Generating...#")
+print("###############\n")
 # random generate 5 dino
-for i in range(0,50):
+for i in range(0,5):
 
     seedID = 1704+i*3
     seed(seedID)
@@ -125,27 +137,32 @@ for i in range(0,50):
 
     # Check with database, see if the current dino has already been generated or not
     md5.update(str(pixelDino).encode('utf-8'))
-    if md5.hexdigest() in database:
+    
+    if md5.hexdigest() in generated_dino:
         print("Duplicate["+md5.hexdigest()+']')
         continue
     else:
-        database[md5.hexdigest()] = True
-        print(md5.hexdigest())
+        current_dino = {'Image':md5.hexdigest(),'Generated':True,'Properties':['placeholder'],'Seed':seedID}
+        database.append(current_dino)
+        print('Current Bit Dino is generated: \ns')
+        print(current_dino)
         # use PIL to create an image from the new array of pixels
         new_image = Image.fromarray(pixelDino)
         new_image = new_image.resize(dimensions, resample=0)
         imgname = 'pixel_dinos/' + md5.hexdigest() + '.png'
         new_image.save(imgname)
 
+
+print("\n##############")
+print("#Completed!!!#")
+print("##############\n")
 '''
 After generation is finished, save the generated pixel dino hash to database
 '''
-database_file = open("pixel_dino_database.csv", "w")
+df = pd.DataFrame(database)
+print(tabulate(df, headers='keys', tablefmt='psql'))
 
-writer = csv.writer(database_file)
-for key, value in database.items():
-    writer.writerow([key, value])
+df.to_csv('pixel_dino_database.csv',index=False)
 
-database_file.close()
 
 
