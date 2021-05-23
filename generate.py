@@ -59,7 +59,7 @@ print("###############\n")
 
 seedID = 1704
 
-dinos = [dino_1]#,dino_2,dino_3,dino_4]
+dinos = [dino_1,dino_2,dino_3,dino_4]
 
 for n,model in enumerate(dinos):
 
@@ -72,9 +72,13 @@ for n,model in enumerate(dinos):
     # random generate 5 dino
     for i in range(0,50):
 
+        # skip common for dino 4
+        if n == 3 and i < 30:
+            continue
+
         seedID = seedID+i*3
 
-        if i < 30 and n != 3:
+        if i < 30:
             tier = 'common'
         elif i < 43:
             tier = 'rare'
@@ -99,7 +103,6 @@ for n,model in enumerate(dinos):
             # use PIL to create an image from the new array of pixels
             pixelDino = Image.fromarray(pixelDino)
             mask = Image.fromarray(mask)
-            print(type(bg))
             new_image = Image.composite(bg,pixelDino,mask)
             new_image = new_image.resize(bitdino.dimension, resample=0)
             imgname = dir+'/' + md5.hexdigest() + '.png'
@@ -110,7 +113,7 @@ for n,model in enumerate(dinos):
             print('Current Bit Dino is generated: \n')
             print(current_dino)
 
-            break
+            
 
 print("\n##############")
 print("#Completed!!!#")
