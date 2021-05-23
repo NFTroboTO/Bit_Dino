@@ -174,17 +174,20 @@ class dino_3(base_model):
     def __init__(self, seedID, tier):
         super().__init__(seedID, tier)
 
-
     def get_dino(self):
         # base
         bb = self.b
         oo = self.o
         ss = self.s
         ww = self.w
-        ee = self.e
+        
         gg = (255,153,153) # pink red
 
         # accessories
+
+        #crazy eye
+        crazyeye = self.yes_or_no()
+        ee = self.e[crazyeye]
 
         # cry
         cs = [(102,178,255),ss] #[tear color, skin color]
@@ -197,7 +200,6 @@ class dino_3(base_model):
         drool = self.yes_or_no()
         ls = ls[drool]
         lo = lo[drool]
-
 
         dino =     [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 

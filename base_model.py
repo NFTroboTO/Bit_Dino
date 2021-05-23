@@ -60,6 +60,7 @@ class base_model():
         # Epic: Three of 1-4
         # Legendary: All of 2-5
         self.accessories = ['crazyeye','hat','tattoo','sunglasses','crown']
+        self.properties = {'smoke':0,'cry':0,'drool':0,'crazyeye':0,'hat':0,'tattoo':0,'sunglasses':0,'crown':0}
 
         self.choose_tier(tier)
 
@@ -68,38 +69,19 @@ class base_model():
 
         if tier == 'common':
             self.bg = Image.open('backgrounds/common.png')
-        
-            if randint(0,1) == 0:
-                self.e = self.e[0]
-            else:
-                self.e = self.e[1]
 
             #TODO:
             # choose accessories
 
         elif tier == 'rare':
             self.bg = Image.open('backgrounds/rare.png')
-       
-            if randint(0,1) == 0:
-                self.e = self.e[0]
-            else:
-                self.e = self.e[1]
 
         elif tier == 'epic':
             self.bg = Image.open('backgrounds/epic.png')
-        
-            if randint(0,1) == 0:
-                self.e = self.e[0]
-            else:
-                self.e = self.e[1]
 
         elif tier == 'legendary':
 
             self.bg = Image.open('backgrounds/legendary.png')
-            if randint(0,1) == 0:
-                self.e = self.e[0]
-            else:
-                self.e = self.e[1]
 
     def yes_or_no(self):
 
