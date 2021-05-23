@@ -1,3 +1,16 @@
+
+'''
+Create classes for each bit dino
+The classes are inherited from the base model which picks the colors for different parts and accesories
+
+TODO:
+need to store the accessories info and return it to generate.py
+
+'''
+
+
+
+
 from base_model import base_model
 
 
