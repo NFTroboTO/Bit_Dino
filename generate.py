@@ -44,6 +44,7 @@ except pd.errors.EmptyDataError:
 else:
     print("\nDatabase loaded successfully!")
     generated_dino = database['Image'].tolist()
+    database = database.to_dict(orient='records')
 
 '''
 Generate pixel dino
@@ -55,7 +56,7 @@ print("###############\n")
 
 print('Bit Dino 1...')
 # random generate 5 dino
-for i in range(0,5):
+for i in range(0,50):
 
     seedID = 1704+i*3
 

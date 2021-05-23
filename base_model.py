@@ -73,13 +73,25 @@ class base_model():
             # choose accessories
 
         elif tier == 'rare':
-            pass
+            self.b = self.b[1]
+            if randint(0,1) == 0:
+                self.e = self.e[0]
+            else:
+                self.e = self.e[1]
 
         elif tier == 'epic':
-            pass
+            self.b = self.b[2]
+            if randint(0,1) == 0:
+                self.e = self.e[0]
+            else:
+                self.e = self.e[1]
 
         elif tier == 'legendary':
-            pass
+            self.b = self.b[2]
+            if randint(0,1) == 0:
+                self.e = self.e[0]
+            else:
+                self.e = self.e[1]
 
     '''
     Helper Functions to set pixel colors for each part
