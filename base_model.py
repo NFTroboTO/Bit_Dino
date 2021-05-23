@@ -1,7 +1,10 @@
 from random import randint, seed
 
+import numpy as np
 import webcolors
+from PIL import Image
 
+import cv2
 '''
 This class is meant to store the base models
 Is imported in generate.py
@@ -19,7 +22,6 @@ d - du zi
 
 '''
 
-
 class base_model():
     
     def __init__(self,seedID,tier):
@@ -27,10 +29,13 @@ class base_model():
         # set random seed
         seed(seedID)
 
+        # set output dimension
+        self.dimension = (1440, 1440)
+
         # generate colors
 
         # backgound
-        self.b = [(224,224,224),(0,128,255),(204,0,204),'rainbow'] #[grey, blue, purple, rainbow]
+        self.b = [(224,224,224),(0,128,255),(153,0,153),(0,0,0)] #[grey, blue, purple, rainbow]
         # outline
         self.o = (0,0,0) # always black
         # white
@@ -48,7 +53,43 @@ class base_model():
         self.h,self.h_actual,self.h_closet = self.set_part_color()
         #...
 
+        self.bg = Image.open('test_bg/bg.png')
+        #self.bg = np.array(bg)
+        #self.bg = cv2.imread('test_bg/bg.png')
 
+        red = (244,67,54)
+        org = (255,152,0)
+        yel = (255,235,59)
+        gre = (204,255,144)
+        dgr = (0,150,136)
+        lbl = (0,188,212)
+        blu = (33,150,243)
+        pur = (103,58,183)
+
+        self.rainbow = [[red,red,red,red,red,org,org,org,org,org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre], 
+                        [red,red,red,red,org,org,org,org,org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr], 
+                        [red,red,red,org,org,org,org,org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr], 
+                        [red,red,org,org,org,org,org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr], 
+                        [red,org,org,org,org,org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr], 
+                        [org,org,org,org,org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr], 
+                        [org,org,org,org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr], 
+                        [org,org,org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl], 
+                        [org,org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl], 
+                        [org,org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl], 
+                        [org,yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl], 
+                        [yel,yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl], 
+                        [yel,yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu], 
+                        [yel,yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu], 
+                        [yel,yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu], 
+                        [yel,yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu,blu], 
+                        [yel,yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu,blu,blu], 
+                        [yel,gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu,blu,blu,blu], 
+                        [gre,gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu,blu,blu,blu,pur], 
+                        [gre,gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu,blu,blu,blu,pur,pur], 
+                        [gre,gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu,blu,blu,blu,pur,pur,pur], 
+                        [gre,gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu,blu,blu,blu,pur,pur,pur,pur], 
+                        [gre,gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu,blu,blu,blu,pur,pur,pur,pur,pur], 
+                        [gre,dgr,dgr,dgr,dgr,dgr,dgr,lbl,lbl,lbl,lbl,lbl,blu,blu,blu,blu,blu,blu,pur,pur,pur,pur,pur,pur]]
 
         # Common: one of 1-3
         # Rare: Two of 1-3
@@ -87,11 +128,15 @@ class base_model():
                 self.e = self.e[1]
 
         elif tier == 'legendary':
-            self.b = self.b[2]
+            self.b = self.b[3]
             if randint(0,1) == 0:
                 self.e = self.e[0]
             else:
                 self.e = self.e[1]
+
+    def yes_or_no(self):
+
+        return randint(0,1) == 0
 
     '''
     Helper Functions to set pixel colors for each part
@@ -125,7 +170,8 @@ class base_model():
 
         actual,closet = self.get_colour_name(rgb)
 
-        return rgb, actual, closet
+        # return alpha as well
+        return (r,g,b), actual, closet
     #########################################################################
 
 

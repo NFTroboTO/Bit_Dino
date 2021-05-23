@@ -9,8 +9,6 @@ need to store the accessories info and return it to generate.py
 '''
 
 
-
-
 from base_model import base_model
 
 
@@ -19,154 +17,212 @@ class dino_1(base_model):
     def __init__(self, seedID, tier):
         super().__init__(seedID,tier)
 
-        b = self.b
-        o = self.o
-        s = self.s
-        h = self.h
-        w = self.w
-        e = self.e
-        d = self.d    
+    def get_dino(self):
+        # base
+        bb = (0,0,0)
+        oo = self.o
+        ss = self.s
+        hh = self.h
+        ww = self.w
+        ee = self.e
+        dd = self.d    
 
-        self.dino = [[b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
-                    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
-                    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
-                    [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
-                    [b,b,b,b,b,b,b,b,b,b,b,o,o,o,o,o,b,b,b,b,b,b,b,b],
-                    [b,b,b,b,b,b,b,b,b,b,o,o,s,s,s,o,o,o,b,b,b,b,b,b],
-                    [b,b,b,b,b,b,o,o,o,o,o,s,s,s,s,s,s,o,o,o,b,b,b,b],
-                    [b,b,b,b,b,o,h,h,h,o,s,s,s,s,s,s,s,s,s,o,o,b,b,b],
-                    [b,b,b,b,b,o,h,h,o,o,s,s,s,s,s,s,s,s,s,s,o,o,b,b],
-                    [b,b,b,b,b,o,o,h,o,s,s,s,s,s,s,w,w,s,s,s,s,o,o,b],
-                    [b,b,b,b,b,b,o,o,o,s,s,s,s,s,s,w,e,s,s,s,s,s,o,b],
-                    [b,b,b,b,b,b,b,o,s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,b],
-                    [b,b,b,o,o,o,o,o,s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,b],
-                    [b,b,o,h,h,h,o,s,s,s,s,s,s,o,o,o,o,o,o,o,o,o,o,b],
-                    [b,b,o,h,h,h,o,s,s,s,s,s,s,s,s,s,s,s,s,s,o,b,b,b],
-                    [b,b,o,h,h,o,o,s,s,s,s,s,s,s,s,s,o,o,o,o,o,b,b,b],
-                    [b,b,o,o,h,o,s,s,s,s,s,s,s,s,s,s,o,b,b,b,b,b,b,b],
-                    [b,b,b,o,o,o,s,s,s,s,s,s,s,s,s,s,o,b,b,b,b,b,b,b],
-                    [b,b,b,b,o,s,s,s,s,s,s,s,s,s,s,d,o,b,b,b,b,b,b,b],
-                    [o,o,o,o,o,s,s,s,s,s,s,s,s,s,d,d,d,o,b,b,b,b,b,b],
-                    [h,h,h,o,s,s,s,s,s,s,s,s,s,s,d,d,d,d,o,b,b,b,b,b],
-                    [h,h,o,s,s,s,s,s,s,s,s,s,s,d,d,d,d,d,d,o,b,b,b,b],
-                    [h,o,s,s,s,s,s,s,s,s,s,s,d,d,d,d,d,d,d,d,o,b,b,b],
-                    [o,o,s,s,s,s,s,s,s,s,s,d,d,d,d,d,d,d,d,d,d,o,b,b]]
+        # accessories
+
+        dino =         [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,oo,oo,oo,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,ss,ss,ss,oo,oo,oo,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,oo,oo,oo,oo,oo,ss,ss,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,hh,hh,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,hh,hh,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,oo,hh,oo,ss,ss,ss,ss,ss,ss,ww,ww,ss,ss,ss,ss,oo,oo,bb],
+                        [bb,bb,bb,bb,bb,bb,oo,oo,oo,ss,ss,ss,ss,ss,ss,ww,ee,ss,ss,ss,ss,ss,oo,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb],
+                        [bb,bb,bb,oo,oo,oo,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb],
+                        [bb,bb,oo,hh,hh,hh,oo,ss,ss,ss,ss,ss,ss,oo,oo,oo,oo,oo,oo,oo,oo,oo,oo,bb],
+                        [bb,bb,oo,hh,hh,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb],
+                        [bb,bb,oo,hh,hh,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,oo,oo,bb,bb,bb],
+                        [bb,bb,oo,oo,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,oo,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,oo,bb,bb,bb,bb,bb,bb,bb],
+                        [oo,oo,oo,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,oo,bb,bb,bb,bb,bb,bb],
+                        [hh,hh,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,dd,oo,bb,bb,bb,bb,bb],
+                        [hh,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,dd,dd,dd,oo,bb,bb,bb,bb],
+                        [hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,dd,oo,bb,bb,bb],
+                        [oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,dd,dd,dd,oo,bb,bb]]
+
+        return dino
+
+    def get_mask(self):
+        # mask
+        bb = 255
+        oo = ss = hh = ww = ee = dd = 0  
+
+        mask =         [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,oo,oo,oo,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,ss,ss,ss,oo,oo,oo,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,oo,oo,oo,oo,oo,ss,ss,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,hh,hh,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,hh,hh,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,oo,hh,oo,ss,ss,ss,ss,ss,ss,ww,ww,ss,ss,ss,ss,oo,oo,bb],
+                        [bb,bb,bb,bb,bb,bb,oo,oo,oo,ss,ss,ss,ss,ss,ss,ww,ee,ss,ss,ss,ss,ss,oo,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb],
+                        [bb,bb,bb,oo,oo,oo,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb],
+                        [bb,bb,oo,hh,hh,hh,oo,ss,ss,ss,ss,ss,ss,oo,oo,oo,oo,oo,oo,oo,oo,oo,oo,bb],
+                        [bb,bb,oo,hh,hh,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb],
+                        [bb,bb,oo,hh,hh,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,oo,oo,bb,bb,bb],
+                        [bb,bb,oo,oo,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,oo,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,oo,bb,bb,bb,bb,bb,bb,bb],
+                        [oo,oo,oo,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,oo,bb,bb,bb,bb,bb,bb],
+                        [hh,hh,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,dd,oo,bb,bb,bb,bb,bb],
+                        [hh,hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,dd,dd,dd,oo,bb,bb,bb,bb],
+                        [hh,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,dd,oo,bb,bb,bb],
+                        [oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,dd,dd,dd,oo,bb,bb]]
+        return mask
 
 class dino_2(base_model):
 
-    def __init__(self, seedID):
-        super().__init__(seedID)
+    def __init__(self, seedID, tier):
+        super().__init__(seedID, tier)
 
-        b = self.b
-        o = self.o
-        s = self.s
-        h = self.h
-        w = self.w
-        e = self.e
-        d = self.d
-        t = self.t   
+        # base
+        bb = self.b
+        oo = self.o
+        ss = self.s
+        hh = self.h
+        ww = self.w
+        ee = self.e
+        dd = self.d
+        tt = self.t   
 
-        self.dino =   [[b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b],
-                        [b,b,b,b,b,b,b,b,b,h,h,h,b,b,b,b,b,b,b,b,b,b,b,b],
-                        [b,b,b,b,b,b,b,b,h,h,h,h,h,b,b,b,b,b,b,b,b,b,b,b],
-                        [b,b,b,b,b,b,b,h,h,h,h,h,h,h,b,b,b,b,b,b,b,b,b,b],
-                        [b,b,b,b,b,b,o,o,o,o,o,o,o,o,b,b,b,b,b,b,b,b,b,b],
-                        [b,b,b,b,o,o,o,s,s,s,s,s,s,o,o,b,b,b,b,b,b,b,b,b],
-                        [b,b,b,o,o,s,s,s,s,s,s,s,s,s,o,o,b,b,b,b,b,b,b,b],
-                        [b,b,b,o,s,s,s,s,s,s,s,s,s,s,s,o,b,b,b,b,b,b,b,b],
-                        [b,b,o,o,s,s,s,e,s,s,s,s,e,s,s,o,o,b,b,b,b,b,b,b],
-                        [b,b,o,s,s,s,e,e,e,s,s,e,e,e,s,s,o,o,b,b,b,b,b,b],
-                        [b,b,o,s,s,s,s,e,s,s,s,s,e,s,s,s,s,o,o,b,b,b,b,b],
-                        [b,b,o,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,o,o,b,b,b],
-                        [b,b,o,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,o,b,b],
-                        [b,b,o,o,s,s,s,s,s,s,s,s,o,s,s,s,s,o,s,o,s,o,b,b],
-                        [b,b,b,o,s,s,s,s,s,s,s,s,t,o,s,s,s,s,s,s,s,o,b,b],
-                        [b,b,b,o,s,s,s,s,s,s,s,s,t,t,o,o,s,s,s,s,s,o,b,b],
-                        [b,b,b,o,o,s,s,s,s,s,s,s,s,t,s,o,o,o,o,o,o,o,b,b],
-                        [b,b,b,b,o,o,s,s,s,s,s,s,s,s,s,o,o,o,o,o,b,b,b,b],
-                        [b,b,b,b,b,o,s,s,s,s,s,s,s,s,s,o,b,b,b,b,b,b,b,b],
-                        [b,b,b,b,o,o,s,s,s,s,s,s,s,s,o,o,b,o,o,o,o,o,b,b],
-                        [b,b,b,o,o,s,s,s,d,d,d,s,s,s,o,o,o,o,o,o,o,o,b,b],
-                        [b,b,b,o,s,s,s,s,d,d,d,s,s,s,s,o,o,o,o,o,b,o,b,b],
-                        [b,b,o,o,s,s,s,d,d,d,d,d,s,s,s,s,o,b,b,o,b,b,b,b],
-                        [b,b,o,s,s,s,d,d,d,d,d,d,d,s,s,s,o,o,b,b,b,b,b,b]]
+        # accessories
+
+        self.dino =   [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,hh,hh,hh,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,hh,hh,hh,hh,hh,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,hh,hh,hh,hh,hh,hh,hh,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,oo,oo,oo,oo,oo,oo,oo,oo,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,oo,oo,oo,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,oo,oo,ss,ss,ss,ee,ss,ss,ss,ss,ee,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,oo,ss,ss,ss,ee,ee,ee,ss,ss,ee,ee,ee,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,oo,ss,ss,ss,ss,ee,ss,ss,ss,ss,ee,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb],
+                        [bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb],
+                        [bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb],
+                        [bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,oo,ss,ss,ss,ss,oo,ss,oo,ss,oo,bb,bb],
+                        [bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,tt,oo,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb],
+                        [bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,tt,tt,oo,oo,ss,ss,ss,ss,ss,oo,bb,bb],
+                        [bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,tt,ss,oo,oo,oo,oo,oo,oo,oo,bb,bb],
+                        [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,oo,oo,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,oo,oo,oo,oo,oo,bb,bb],
+                        [bb,bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,ss,ss,ss,oo,oo,oo,oo,oo,oo,oo,oo,bb,bb],
+                        [bb,bb,bb,oo,ss,ss,ss,ss,dd,dd,dd,ss,ss,ss,ss,oo,oo,oo,oo,oo,bb,oo,bb,bb],
+                        [bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,dd,dd,ss,ss,ss,ss,oo,bb,bb,oo,bb,bb,bb,bb],
+                        [bb,bb,oo,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb]]
 
 class dino_3(base_model):
 
-    def __init__(self, seedID):
-        super().__init__(seedID)
+    def __init__(self, seedID, tier):
+        super().__init__(seedID, tier)
 
-        b = self.b
-        o = self.o
-        s = self.s
-        w = self.w
-        e = self.e
-        p = (255,153,153)   
+        # base
+        bb = self.b
+        oo = self.o
+        ss = self.s
+        ww = self.w
+        ee = self.e
+        gg = (255,153,153) # pink red
 
-        self.dino = [[b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b], 
-                     [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b], 
-                     [b,b,b,b,b,b,b,b,b,b,b,b,o,o,o,o,o,b,b,b,b,b,b,b], 
-                     [b,b,b,b,b,b,b,b,b,b,b,o,s,s,s,s,s,o,o,o,b,b,b,b], 
-                     [b,b,b,b,b,b,b,b,o,o,o,o,s,s,s,s,s,s,s,o,o,b,b,b], 
-                     [b,b,b,b,b,o,o,o,o,s,s,s,s,s,s,s,s,o,o,s,o,b,b,b], 
-                     [b,b,b,b,o,o,s,s,s,s,o,o,s,s,s,s,s,s,o,s,o,o,b,b], 
-                     [b,b,b,b,o,s,s,s,o,o,o,o,o,s,s,s,s,s,s,s,s,o,b,b], 
-                     [b,b,b,o,o,s,s,s,s,o,e,o,s,s,s,s,s,s,s,o,o,o,b,b], 
-                     [b,b,b,o,s,s,s,s,s,o,w,o,s,s,s,s,s,s,o,o,w,b,b,b], 
-                     [b,b,o,s,s,s,s,s,s,s,o,o,s,s,s,s,s,o,o,w,w,b,b,b], 
-                     [b,o,o,s,s,s,s,s,s,s,s,s,s,s,s,s,o,o,w,b,w,b,w,b], 
-                     [b,o,s,s,s,s,s,s,s,s,s,s,s,s,s,o,o,w,w,b,b,w,w,b], 
-                     [o,o,s,s,s,s,s,s,s,s,s,s,s,o,o,o,w,b,w,b,w,o,o,b], 
-                     [o,s,s,s,s,s,s,s,s,s,s,s,s,o,w,w,w,b,b,w,o,s,o,o], 
-                     [s,s,s,s,s,s,s,s,s,s,s,s,s,o,p,w,b,b,w,o,o,s,s,o], 
-                     [s,s,s,s,s,s,s,s,s,s,s,s,s,o,p,p,p,w,o,o,s,s,s,o], 
-                     [s,s,s,s,s,s,s,s,s,s,s,s,s,o,o,o,o,o,o,s,s,s,s,o], 
-                     [s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,o], 
-                     [s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,b], 
-                     [s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,o,b], 
-                     [s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,o,b,b], 
-                     [s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,o,o,b,b,b], 
-                     [s,s,s,s,s,s,s,s,s,s,s,s,s,s,o,o,o,o,o,b,b,b,b,b]]
+        # accessories
+
+        # cry
+        cs = [(102,178,255),ss] #[tear color, skin color]
+        cry = self.yes_or_no()
+        cs = cs[cry]
+
+        # drool
+        ls = [(153,204,255),ss]
+        lo = [(102,178,255),oo]
+        drool = self.yes_or_no()
+        ls = ls[drool]
+        lo = lo[drool]
+
+
+        self.dino =   [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,oo,oo,oo,bb,bb,bb,bb,bb,bb,bb], 
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb,bb], 
+                        [bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,oo,oo,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb,bb], 
+                        [bb,bb,bb,bb,bb,oo,oo,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,ss,oo,bb,bb,bb], 
+                        [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,oo,oo,ss,ss,ss,ss,ss,ss,oo,ss,oo,oo,bb,bb], 
+                        [bb,bb,bb,bb,oo,ss,ss,ss,oo,oo,oo,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb], 
+                        [bb,bb,bb,oo,oo,ss,ss,ss,ss,oo,ee,oo,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,bb,bb], 
+                        [bb,bb,bb,oo,ss,ss,ss,cs,cs,oo,ww,oo,ss,ss,ss,ss,ss,ss,oo,oo,ww,bb,bb,bb], 
+                        [bb,bb,oo,ss,ss,ss,ss,cs,cs,cs,oo,oo,ss,ss,ss,ss,ss,oo,oo,ww,ww,bb,bb,bb], 
+                        [bb,oo,oo,ss,ss,ss,ss,ss,cs,cs,ss,ss,ss,ss,ss,ss,oo,oo,ww,bb,ww,bb,ww,bb], 
+                        [bb,oo,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,ss,ss,oo,oo,ww,ww,bb,bb,ww,ww,bb], 
+                        [oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,ww,bb,ww,bb,ww,oo,oo,bb], 
+                        [oo,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,oo,ww,ww,ww,bb,bb,ww,oo,ss,oo,oo], 
+                        [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,oo,gg,ww,bb,bb,ww,oo,oo,ss,ss,oo], 
+                        [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ls,lo,gg,gg,gg,ww,oo,oo,ss,ss,ss,oo], 
+                        [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,lo,lo,oo,oo,oo,oo,ss,ss,ss,ss,oo], 
+                        [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,ls,ls,ss,ss,ss,ss,ss,ss,ss,oo,oo], 
+                        [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,ls,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb], 
+                        [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb], 
+                        [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ls,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb], 
+                        [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb], 
+                        [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,oo,oo,oo,oo,oo,bb,bb,bb,bb,bb]]
 
 
 
 
 class dino_4(base_model):
 
-    def __init__(self, seedID):
-        super().__init__(seedID)
+    def __init__(self, seedID, tier):
+        super().__init__(seedID, tier)
 
-        b = self.b
-        o = self.o
-        s = self.s
-        h = self.h
-        w = self.w
-        e = self.e
-        d = self.d
-        p = (s[0]-10,s[1]-10,s[2]-10) 
-        z = (d[0]-10,d[1]-10,d[2]-10) 
+        # base
+        bb = self.b
+        oo = self.o
+        ss = self.s
+        ww = self.w
+        ee = self.e
+        dd = self.d
+        pp = (ss[0]-10,ss[1]-10,ss[2]-10) 
+        zz = (dd[0]-10,dd[1]-10,dd[2]-10) 
 
-        self.dino =    [[b,b,b,b,b,b,b,b,b,b,b,w,w,b,b,b,b,b,b,b,b,b,b,b],
-                        [b,b,b,b,b,b,b,b,b,o,w,w,w,w,o,b,b,b,b,b,b,b,b,b],
-                        [b,b,b,b,b,b,o,o,o,p,p,w,w,p,p,o,o,o,b,b,b,b,b,b],
-                        [b,b,b,b,b,o,p,p,p,s,p,w,w,p,s,p,p,p,o,b,b,b,b,b],
-                        [b,b,b,b,b,o,o,p,p,p,p,p,p,p,p,p,p,o,o,b,b,b,b,b],
-                        [b,b,b,b,b,o,o,p,p,p,p,p,p,p,p,p,p,o,o,b,b,b,b,b],
-                        [b,b,b,b,o,o,s,p,p,p,p,p,p,p,p,p,p,s,o,o,b,b,b,b],
-                        [b,b,b,b,o,o,s,s,p,p,p,p,p,p,p,p,s,s,o,o,b,b,b,b],
-                        [b,b,b,b,b,o,s,e,w,p,e,p,p,e,p,w,e,s,o,b,b,b,b,b],
-                        [b,b,b,b,b,o,s,e,w,o,e,p,p,e,o,w,e,s,o,b,b,b,b,b],
-                        [b,b,b,o,o,p,o,s,p,p,p,p,p,p,p,p,s,o,s,o,o,b,b,b],
-                        [b,b,b,o,p,p,o,s,s,p,p,p,p,p,p,s,s,o,p,p,o,b,b,b],
-                        [b,b,o,p,p,p,s,o,s,s,o,s,s,o,s,s,o,s,p,p,p,o,b,b],
-                        [b,b,o,p,p,p,s,d,o,o,z,z,z,z,o,o,d,s,s,p,p,s,o,b],
-                        [b,o,s,p,p,s,s,d,z,d,o,o,o,o,d,z,d,s,o,s,s,w,o,b],
-                        [b,o,w,s,s,o,d,z,z,z,z,z,z,z,z,z,z,d,o,w,o,o,b,b],
-                        [b,b,o,o,w,o,o,d,d,z,z,z,z,z,z,z,z,o,s,o,o,b,b,b],
-                        [b,b,b,o,o,p,p,d,d,z,z,z,z,z,z,d,d,d,p,o,b,b,b,b],
-                        [b,b,b,o,p,p,p,d,d,d,d,d,d,d,d,d,d,p,p,p,o,b,b,b],
-                        [b,b,b,o,s,p,p,s,o,d,d,d,d,d,d,d,s,p,p,p,o,b,b,b],
-                        [b,b,b,b,o,s,s,s,o,o,d,d,d,d,o,s,s,p,p,s,o,b,b,b],
-                        [b,b,b,b,o,w,w,s,o,b,o,o,o,o,o,s,s,s,s,o,b,b,b,b],
-                        [b,b,b,b,b,o,o,o,b,b,b,b,b,b,b,o,s,w,w,o,b,b,b,b],
-                        [b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,b,o,o,o,b,b,b,b,b]]
+        # accessories
+
+        self.dino =   [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,ww,ww,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,ww,ww,ww,ww,oo,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,oo,oo,oo,pp,pp,ww,ww,pp,pp,oo,oo,oo,bb,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,pp,pp,pp,ss,pp,ww,ww,pp,ss,pp,pp,pp,oo,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,oo,pp,pp,pp,pp,pp,pp,pp,pp,pp,pp,oo,oo,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,oo,pp,pp,pp,pp,pp,pp,pp,pp,pp,pp,oo,oo,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,oo,oo,ss,pp,pp,pp,pp,pp,pp,pp,pp,pp,pp,ss,oo,oo,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,oo,oo,ss,ss,pp,pp,pp,pp,pp,pp,pp,pp,ss,ss,oo,oo,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,ss,ee,ww,pp,ee,pp,pp,ee,pp,ww,ee,ss,oo,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,ss,ee,ww,oo,ee,pp,pp,ee,oo,ww,ee,ss,oo,bb,bb,bb,bb,bb],
+                        [bb,bb,bb,oo,oo,pp,oo,ss,pp,pp,pp,pp,pp,pp,pp,pp,ss,oo,ss,oo,oo,bb,bb,bb],
+                        [bb,bb,bb,oo,pp,pp,oo,ss,ss,pp,pp,pp,pp,pp,pp,ss,ss,oo,pp,pp,oo,bb,bb,bb],
+                        [bb,bb,oo,pp,pp,pp,ss,oo,ss,ss,oo,ss,ss,oo,ss,ss,oo,ss,pp,pp,pp,oo,bb,bb],
+                        [bb,bb,oo,pp,pp,pp,ss,dd,oo,oo,zz,zz,zz,zz,oo,oo,dd,ss,ss,pp,pp,ss,oo,bb],
+                        [bb,oo,ss,pp,pp,ss,ss,dd,zz,dd,oo,oo,oo,oo,dd,zz,dd,ss,oo,ss,ss,ww,oo,bb],
+                        [bb,oo,ww,ss,ss,oo,dd,zz,zz,zz,zz,zz,zz,zz,zz,zz,zz,dd,oo,ww,oo,oo,bb,bb],
+                        [bb,bb,oo,oo,ww,oo,oo,dd,dd,zz,zz,zz,zz,zz,zz,zz,zz,oo,ss,oo,oo,bb,bb,bb],
+                        [bb,bb,bb,oo,oo,pp,pp,dd,dd,zz,zz,zz,zz,zz,zz,dd,dd,dd,pp,oo,bb,bb,bb,bb],
+                        [bb,bb,bb,oo,pp,pp,pp,dd,dd,dd,dd,dd,dd,dd,dd,dd,dd,pp,pp,pp,oo,bb,bb,bb],
+                        [bb,bb,bb,oo,ss,pp,pp,ss,oo,dd,dd,dd,dd,dd,dd,dd,ss,pp,pp,pp,oo,bb,bb,bb],
+                        [bb,bb,bb,bb,oo,ss,ss,ss,oo,oo,dd,dd,dd,dd,oo,ss,ss,pp,pp,ss,oo,bb,bb,bb],
+                        [bb,bb,bb,bb,oo,ww,ww,ss,oo,bb,oo,oo,oo,oo,oo,ss,ss,ss,ss,oo,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,oo,oo,oo,bb,bb,bb,bb,bb,bb,bb,oo,ss,ww,ww,oo,bb,bb,bb,bb],
+                        [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,oo,bb,bb,bb,bb,bb]]
