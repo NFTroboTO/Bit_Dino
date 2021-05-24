@@ -19,7 +19,7 @@ class dino_1(base_model):
 
     def get_dino(self):
         # base
-        bb = (0,0,0)
+        bb = self.b
         oo = self.o
         ss = self.s
         hh = self.h
@@ -180,14 +180,10 @@ class dino_3(base_model):
         oo = self.o
         ss = self.s
         ww = self.w
-        
+        ee = self.e
         gg = (255,153,153) # pink red
 
         # accessories
-
-        #crazy eye
-        crazyeye = self.yes_or_no()
-        ee = self.e[crazyeye]
 
         # cry
         cs = [(102,178,255),ss] #[tear color, skin color]

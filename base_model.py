@@ -68,20 +68,29 @@ class base_model():
     def choose_tier(self,tier):
 
         if tier == 'common':
-            self.bg = Image.open('backgrounds/common.png')
+            self.bg = Image.open('backgrounds/common1.png')
+
+            crazyeye = self.yes_or_no()
+            self.e = self.e[crazyeye]
 
             #TODO:
             # choose accessories
 
         elif tier == 'rare':
-            self.bg = Image.open('backgrounds/rare.png')
+            self.bg = Image.open('backgrounds/rare1.png')
+            crazyeye = self.yes_or_no()
+            self.e = self.e[crazyeye]
 
         elif tier == 'epic':
-            self.bg = Image.open('backgrounds/epic.png')
+            self.bg = Image.open('backgrounds/epic1.png')
+            crazyeye = self.yes_or_no()
+            self.e = self.e[crazyeye]
 
         elif tier == 'legendary':
 
             self.bg = Image.open('backgrounds/legendary.png')
+            crazyeye = self.yes_or_no()
+            self.e = self.e[crazyeye]
 
     def yes_or_no(self):
 

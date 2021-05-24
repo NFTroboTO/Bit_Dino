@@ -80,10 +80,13 @@ for n,model in enumerate(dinos):
 
         if i < 30:
             tier = 'common'
+
         elif i < 43:
             tier = 'rare'
+
         elif i < 49:
             tier = 'epic'
+            
         elif i == 49:
             tier = 'legendary'
 
@@ -91,7 +94,7 @@ for n,model in enumerate(dinos):
         bitdino =  model(seedID,tier)# can use (random) to select different dino in the future
         pixelDino = np.array(bitdino.get_dino(), dtype=np.uint8)
         mask = np.array(bitdino.get_mask(), dtype=np.uint8)
-        bg = bitdino.bg
+        bg = bitdino.bg.resize((24,24), resample=0)
         # Check with database, see if the current dino has already been generated or not
         hashimage = pixelDino + np.array(bg)[:,:,:3]
         md5.update(str(hashimage).encode('utf-8'))
@@ -101,10 +104,11 @@ for n,model in enumerate(dinos):
             continue
         else:
             # use PIL to create an image from the new array of pixels
-            pixelDino = Image.fromarray(pixelDino)
-            mask = Image.fromarray(mask)
+            pixelDino = Image.fromarray(pixelDino).resize(bitdino.dimension, resample=0)
+            mask = Image.fromarray(mask).resize(bitdino.dimension, resample=0)
+            bg = bitdino.bg.resize(bitdino.dimension, resample=0)
             new_image = Image.composite(bg,pixelDino,mask)
-            new_image = new_image.resize(bitdino.dimension, resample=0)
+            #new_image = new_image.resize(bitdino.dimension, resample=0)
             imgname = dir+'/' + md5.hexdigest() + '.png'
             new_image.save(imgname)
 
