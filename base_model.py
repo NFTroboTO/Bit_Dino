@@ -24,7 +24,7 @@ d - du zi
 
 class base_model():
     
-    def __init__(self,seedID,tier):
+    def __init__(self, seedID, tier):
 
         # set random seed
         seed(seedID)
@@ -47,8 +47,7 @@ class base_model():
         # du zi
         self.d,self.d_actual,self.d_closet = self.set_part_color()
         # eye
-        e,_,_ = self.set_part_color()
-        self.e = [e,(255,0,0)] # normal eye and crazy eye
+        self.e = [(121, 85, 72), (255, 0, 0)] # normal eye and crazy eye
         # hat
         self.h,self.h_actual,self.h_closet = self.set_part_color()
         #...
@@ -70,31 +69,33 @@ class base_model():
         if tier == 'common':
             self.bg = Image.open('backgrounds/common1.png')
 
-            crazyeye = self.yes_or_no()
-            self.e = self.e[crazyeye]
+            self.properties['crazyeye'] = self.yes_or_no()
+            self.e = self.e[self.properties['crazyeye']]
 
             #TODO:
             # choose accessories
 
         elif tier == 'rare':
             self.bg = Image.open('backgrounds/rare1.png')
-            crazyeye = self.yes_or_no()
-            self.e = self.e[crazyeye]
+            self.properties['crazyeye'] = self.yes_or_no()
+            self.e = self.e[self.properties['crazyeye']]
 
         elif tier == 'epic':
             self.bg = Image.open('backgrounds/epic1.png')
-            crazyeye = self.yes_or_no()
-            self.e = self.e[crazyeye]
+            self.properties['crazyeye'] = self.yes_or_no()
+            self.e = self.e[self.properties['crazyeye']]
 
         elif tier == 'legendary':
 
             self.bg = Image.open('backgrounds/legendary.png')
-            crazyeye = self.yes_or_no()
-            self.e = self.e[crazyeye]
+            self.properties['crazyeye'] = self.yes_or_no()
+            self.e = self.e[self.properties['crazyeye']]
+
+            self.properties['crown'] = 1
 
     def yes_or_no(self):
 
-        return randint(0,1) == 0
+        return randint(0, 1) == 0
 
     '''
     Helper Functions to set pixel colors for each part

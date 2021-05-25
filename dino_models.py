@@ -7,7 +7,7 @@ TODO:
 need to store the accessories info and return it to generate.py
 
 '''
-
+import numpy as np
 
 from base_model import base_model
 
@@ -270,10 +270,8 @@ class dino_4(base_model):
         ww = self.w
         ee = self.e
         dd = self.d
-        pp = (ss[0]-10,ss[1]-10,ss[2]-10) 
-        zz = (dd[0]-10,dd[1]-10,dd[2]-10) 
-
-        # accessories
+        pp = (ss[0]+10,ss[1]+10,ss[2]+10)
+        zz = (dd[0]+10,dd[1]+10,dd[2]+10)
 
         dino =     [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,ww,ww,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,ww,ww,ww,ww,oo,bb,bb,bb,bb,bb,bb,bb,bb,bb],
@@ -283,8 +281,8 @@ class dino_4(base_model):
                     [bb,bb,bb,bb,bb,oo,oo,pp,pp,pp,pp,pp,pp,pp,pp,pp,pp,oo,oo,bb,bb,bb,bb,bb],
                     [bb,bb,bb,bb,oo,oo,ss,pp,pp,pp,pp,pp,pp,pp,pp,pp,pp,ss,oo,oo,bb,bb,bb,bb],
                     [bb,bb,bb,bb,oo,oo,ss,ss,pp,pp,pp,pp,pp,pp,pp,pp,ss,ss,oo,oo,bb,bb,bb,bb],
-                    [bb,bb,bb,bb,bb,oo,ss,ee,ww,pp,ee,pp,pp,ee,pp,ww,ee,ss,oo,bb,bb,bb,bb,bb],
-                    [bb,bb,bb,bb,bb,oo,ss,ee,ww,oo,ee,pp,pp,ee,oo,ww,ee,ss,oo,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,ss,ww,ee,pp,ww,pp,pp,ww,pp,ee,ww,ss,oo,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,ss,ww,ee,oo,ww,pp,pp,ww,oo,ee,ww,ss,oo,bb,bb,bb,bb,bb],
                     [bb,bb,bb,oo,oo,pp,oo,ss,pp,pp,pp,pp,pp,pp,pp,pp,ss,oo,ss,oo,oo,bb,bb,bb],
                     [bb,bb,bb,oo,pp,pp,oo,ss,ss,pp,pp,pp,pp,pp,pp,ss,ss,oo,pp,pp,oo,bb,bb,bb],
                     [bb,bb,oo,pp,pp,pp,ss,oo,ss,ss,oo,ss,ss,oo,ss,ss,oo,ss,pp,pp,pp,oo,bb,bb],
@@ -299,6 +297,18 @@ class dino_4(base_model):
                     [bb,bb,bb,bb,oo,ww,ww,ss,oo,bb,oo,oo,oo,oo,oo,ss,ss,ss,ss,oo,bb,bb,bb,bb],
                     [bb,bb,bb,bb,bb,oo,oo,oo,bb,bb,bb,bb,bb,bb,bb,oo,ss,ww,ww,oo,bb,bb,bb,bb],
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,oo,bb,bb,bb,bb,bb]]
+
+        # accessories
+        dino = np.array(dino)
+
+        if self.properties['crazyeye']:
+            dino = self.add_crazy_eye(dino)
+
+        if self.properties['sunglasses']:
+            dino = self.add_sunglasses(dino)
+
+        if self.properties['crown']:
+            dino = self.add_crown(dino)
 
         return dino
 
@@ -334,4 +344,82 @@ class dino_4(base_model):
                     [bb,bb,bb,bb,bb,oo,oo,oo,bb,bb,bb,bb,bb,bb,bb,oo,ss,ww,ww,oo,bb,bb,bb,bb],
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,oo,bb,bb,bb,bb,bb]]
 
+        if self.properties['crown']:
+            mask = [[bb, bb, bb, bb, bb, bb, bb, bb, bb, ww, bb, ww, ww, bb, ww, bb, bb, bb, bb, bb, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, bb, bb, bb, bb, bb, oo, ww, ww, ww, ww, oo, bb, bb, bb, bb, bb, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, bb, bb, oo, oo, oo, pp, pp, ww, ww, pp, pp, oo, oo, oo, bb, bb, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, bb, oo, pp, pp, pp, ss, pp, ww, ww, pp, ss, pp, pp, pp, oo, bb, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, bb, oo, oo, pp, pp, pp, pp, pp, pp, pp, pp, pp, pp, oo, oo, bb, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, bb, oo, oo, pp, pp, pp, pp, pp, pp, pp, pp, pp, pp, oo, oo, bb, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, oo, oo, ss, pp, pp, pp, pp, pp, pp, pp, pp, pp, pp, ss, oo, oo, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, oo, oo, ss, ss, pp, pp, pp, pp, pp, pp, pp, pp, ss, ss, oo, oo, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, bb, oo, ss, ee, ww, pp, ee, pp, pp, ee, pp, ww, ee, ss, oo, bb, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, bb, oo, ss, ee, ww, oo, ee, pp, pp, ee, oo, ww, ee, ss, oo, bb, bb, bb, bb, bb],
+                    [bb, bb, bb, oo, oo, pp, oo, ss, pp, pp, pp, pp, pp, pp, pp, pp, ss, oo, ss, oo, oo, bb, bb, bb],
+                    [bb, bb, bb, oo, pp, pp, oo, ss, ss, pp, pp, pp, pp, pp, pp, ss, ss, oo, pp, pp, oo, bb, bb, bb],
+                    [bb, bb, oo, pp, pp, pp, ss, oo, ss, ss, oo, ss, ss, oo, ss, ss, oo, ss, pp, pp, pp, oo, bb, bb],
+                    [bb, bb, oo, pp, pp, pp, ss, dd, oo, oo, zz, zz, zz, zz, oo, oo, dd, ss, ss, pp, pp, ss, oo, bb],
+                    [bb, oo, ss, pp, pp, ss, ss, dd, zz, dd, oo, oo, oo, oo, dd, zz, dd, ss, oo, ss, ss, ww, oo, bb],
+                    [bb, oo, ww, ss, ss, oo, dd, zz, zz, zz, zz, zz, zz, zz, zz, zz, zz, dd, oo, ww, oo, oo, bb, bb],
+                    [bb, bb, oo, oo, ww, oo, oo, dd, dd, zz, zz, zz, zz, zz, zz, zz, zz, oo, ss, oo, oo, bb, bb, bb],
+                    [bb, bb, bb, oo, oo, pp, pp, dd, dd, zz, zz, zz, zz, zz, zz, dd, dd, dd, pp, oo, bb, bb, bb, bb],
+                    [bb, bb, bb, oo, pp, pp, pp, dd, dd, dd, dd, dd, dd, dd, dd, dd, dd, pp, pp, pp, oo, bb, bb, bb],
+                    [bb, bb, bb, oo, ss, pp, pp, ss, oo, dd, dd, dd, dd, dd, dd, dd, ss, pp, pp, pp, oo, bb, bb, bb],
+                    [bb, bb, bb, bb, oo, ss, ss, ss, oo, oo, dd, dd, dd, dd, oo, ss, ss, pp, pp, ss, oo, bb, bb, bb],
+                    [bb, bb, bb, bb, oo, ww, ww, ss, oo, bb, oo, oo, oo, oo, oo, ss, ss, ss, ss, oo, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, bb, oo, oo, oo, bb, bb, bb, bb, bb, bb, bb, oo, ss, ww, ww, oo, bb, bb, bb, bb],
+                    [bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, oo, oo, oo, bb, bb, bb, bb, bb]]
+
         return mask
+
+    def add_crazy_eye(self, dino):
+        """
+        overwrite pupil from black to crazyeye color
+        :param dino:
+        :return:
+        """
+        dino[9, 9] = (183, 28, 28)
+        dino[9, 14] = (183, 28, 28)
+        return dino
+
+    def add_sunglasses(self, dino):
+        """
+        overwrite pixels on dino to add a pair of sunglasses that is black with white reflections
+        :param dino: 24 * 24 dino array
+        :return: modified dino array
+        """
+        # main body - black
+        # first row
+        dino[7, 6:18] = self.o
+        # second row
+        dino[8, 6:10] = self.o
+        dino[8, 13:18] = self.o
+        # thrid row
+        dino[9, 7:11] = self.o
+        dino[9, 13:17] = self.o
+        # reflection - white
+        dino[8, 10] = self.w
+        dino[8, 16] = self.w
+        dino[9, 9] = self.w
+        dino[9, 15] = self.w
+
+        return dino
+
+    def add_crown(self, dino):
+        """
+        overwrite pixels on dino to add a yellow crown
+        :param dino: 24 * 24 dino array
+        :return: modified dino array
+        """
+        crown_yellow = (255, 234, 0)
+
+        dino[0, 9] = crown_yellow
+        dino[0, 11:13] = crown_yellow
+        dino[0, 14] = crown_yellow
+
+        dino[1, 9:15] = crown_yellow
+        dino[2, 9:15] = crown_yellow
+
+        return dino
+
+
