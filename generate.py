@@ -61,6 +61,8 @@ seedID = 1704
 
 dinos = [dino_1,dino_2,dino_3,dino_4]
 
+dinos = [dino_2]
+
 for n,model in enumerate(dinos):
 
     dir = "../pixel_dinos/dino_"+str(n+1)

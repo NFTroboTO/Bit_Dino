@@ -56,8 +56,8 @@ class base_model():
         # Rare: Two of 1-3
         # Epic: Three of 1-4
         # Legendary: All of 2-5
-        self.accessories = ['crazyeye','hat','tattoo','sunglasses','crown']
-        #self.properties = {'smoke':0,'cry':0,'drool':0,'crazyeye':0,'hat':0,'tattoo':0,'sunglasses':0,'crown':0}
+        # self.accessories = ['crazyeye','hat','tattoo','sunglasses','crown']
+        # self.properties = {'smoke':0,'cry':0,'drool':0,'crazyeye':0,'hat':0,'tattoo':0,'sunglasses':0,'crown':0}
         
 
         self.choose_tier(tier)
@@ -85,7 +85,6 @@ class base_model():
             self.bg = Image.open('backgrounds/legendary.png')
             self.num_of_acc = -1 # means every possible accessories
 
-            self.properties['crown'] = 1
 
     def add_properties(self, accessories):
 
@@ -100,7 +99,11 @@ class base_model():
 
         # select self.num_of_acc accessories based on tier 
         accs = list(accessories.keys())
-        selected = sample(accs, self.num_of_acc)
+        
+        if self.num_of_acc != -1:
+            selected = sample(accs, self.num_of_acc)
+        else:
+            selected = accs # select all if tier is legendary
 
         self.properties = self.add_properties(accs)
 

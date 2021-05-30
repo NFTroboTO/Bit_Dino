@@ -147,7 +147,12 @@ class dino_2(base_model):
 
         bb = 255
 
-        oo = ss = hh = ee = dd = tt = 0
+        oo = ss = ee = dd = st = sd = 0
+
+        if self.properties['hat'] == 1:
+            hh = 0
+        else:
+            hh = 255
 
         mask =     [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,hh,hh,hh,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
@@ -157,19 +162,19 @@ class dino_2(base_model):
                     [bb,bb,bb,bb,oo,oo,oo,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb,bb,bb],
                     [bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb,bb],
                     [bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb,bb],
-                    [bb,bb,oo,oo,ss,ss,ss,ee,ss,ss,ss,ss,ee,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb],
-                    [bb,bb,oo,ss,ss,ss,ee,ee,ee,ss,ss,ee,ee,ee,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb],
-                    [bb,bb,oo,ss,ss,ss,ss,ee,ss,ss,ss,ss,ee,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb],
-                    [bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb],
-                    [bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb],
-                    [bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,oo,ss,ss,ss,ss,oo,ss,oo,ss,oo,bb,bb],
-                    [bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,tt,oo,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb],
-                    [bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,tt,tt,oo,oo,ss,ss,ss,ss,ss,oo,bb,bb],
-                    [bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,tt,ss,oo,oo,oo,oo,oo,oo,oo,bb,bb],
-                    [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,oo,oo,bb,bb,bb,bb],
-                    [bb,bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb,bb],
-                    [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,oo,oo,oo,oo,oo,bb,bb],
-                    [bb,bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,ss,ss,ss,oo,oo,oo,oo,oo,oo,oo,oo,bb,bb],
+                    [bb,bb,oo,oo,ss,ss,ss,oo,ss,ss,ss,ss,oo,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb],
+                    [bb,bb,oo,ss,ss,ss,oo,ee,oo,ss,ss,oo,ee,oo,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb],
+                    [bb,bb,oo,ss,ss,ss,st,oo,ss,ss,ss,ss,oo,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb],
+                    [bb,bb,oo,ss,ss,st,ss,ss,st,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb],
+                    [bb,bb,oo,ss,ss,st,ss,ss,st,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb],
+                    [bb,bb,oo,oo,ss,st,ss,st,ss,ss,ss,ss,oo,ss,ss,ss,ss,oo,ss,oo,ss,oo,bb,bb],
+                    [bb,bb,bb,oo,ss,ss,st,ss,ss,ss,ss,sd,sd,oo,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb],
+                    [bb,bb,bb,oo,ss,ss,st,ss,ss,ss,ss,ss,sd,sd,oo,oo,ss,ss,ss,ss,ss,oo,bb,bb],
+                    [bb,bb,bb,oo,oo,st,ss,ss,ss,ss,ss,ss,ss,sd,sd,oo,oo,oo,oo,oo,oo,oo,bb,bb],
+                    [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,sd,ss,oo,oo,oo,oo,oo,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,sd,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,sd,ss,oo,oo,bb,oo,oo,oo,oo,oo,bb,bb],
+                    [bb,bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,ss,ss,sd,oo,oo,oo,oo,oo,oo,oo,oo,bb,bb],
                     [bb,bb,bb,oo,ss,ss,ss,ss,dd,dd,dd,ss,ss,ss,ss,oo,oo,oo,oo,oo,bb,oo,bb,bb],
                     [bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,dd,dd,ss,ss,ss,ss,oo,bb,bb,oo,bb,bb,bb,bb],
                     [bb,bb,oo,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb]]  
@@ -236,7 +241,7 @@ class dino_3(base_model):
     def get_mask(self):
         # base
         bb = 255
-        oo = ss = ww = ee = gg = cs = ls = lo =0
+        oo = ss = ww = ee = gg = cs = ls = lo = 0
 
         mask =     [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 
