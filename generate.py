@@ -61,7 +61,7 @@ seedID = 1704
 
 dinos = [dino_1,dino_2,dino_3,dino_4]
 
-dinos = [dino_2]
+dinos = [dino_2,dino_3]
 
 for n,model in enumerate(dinos):
 
@@ -114,7 +114,7 @@ for n,model in enumerate(dinos):
             imgname = dir+'/' + md5.hexdigest() + '.png'
             new_image.save(imgname)
 
-            current_dino = {'Image':md5.hexdigest(),'Generated':True,'Properties':[bitdino.properties],'Seed':seedID}
+            current_dino = {'Image':md5.hexdigest(),'Generated':True,'Tier':bitdino.tier,'Properties':[bitdino.properties],'Seed':seedID}
             database.append(current_dino)
             print('Current Bit Dino is generated: \n')
             print(current_dino)

@@ -26,6 +26,8 @@ class base_model():
     
     def __init__(self, seedID, tier):
 
+        self.tier = tier
+
         # set random seed
         seed(seedID)
 
@@ -60,30 +62,31 @@ class base_model():
         # self.properties = {'smoke':0,'cry':0,'drool':0,'crazyeye':0,'hat':0,'tattoo':0,'sunglasses':0,'crown':0}
         
 
-        self.choose_tier(tier)
+        self.choose_tier()
 
 
-    def choose_tier(self,tier):
+    def choose_tier(self):
 
-        if tier == 'common':
+        if self.tier == 'common':
             self.bg = Image.open('backgrounds/common1.png')
             self.num_of_acc = 1
 
             #TODO:
             # choose accessories
 
-        elif tier == 'rare':
+        elif self.tier == 'rare':
             self.bg = Image.open('backgrounds/rare1.png')
             self.num_of_acc = 2
 
-        elif tier == 'epic':
+        elif self.tier == 'epic':
             self.bg = Image.open('backgrounds/epic1.png')
             self.num_of_acc = 3
 
-        elif tier == 'legendary':
+        elif self.tier == 'legendary':
 
             self.bg = Image.open('backgrounds/legendary.png')
             self.num_of_acc = -1 # means every possible accessories
+            self.crown_yellow = (255, 234, 0)
 
 
     def add_properties(self, accessories):
@@ -110,6 +113,13 @@ class base_model():
         # set selected accessories
         for acc in selected:
             self.properties[acc] = 1
+
+        # replace hat with crown for legendary
+        if self.tier == 'legendary':
+            if 'hat' in self.properties:
+                self.properties['hat'] = 0
+            else:
+                print("NO HAT ACCESSORY")
 
         # set accessories according to property dictionary        
         acc_pixel = []

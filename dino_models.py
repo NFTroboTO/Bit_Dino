@@ -103,18 +103,21 @@ class dino_2(base_model):
         dd = self.d
 
         # accessories
-        sd = [(153,204,255),ss] # drool  
-        st = [(63, 81, 181),ss] # vein
-        hh = [self.h, bb] # hat
+        sd = [ss,(153,204,255)] # drool  
+        st = [ss,(63, 81, 181)] # vein
+        hh = [bb,self.h] # hat
         ee = self.e # crazy eye
 
         accessories = {'drool': sd,     # drool
                        'vein': st,      # vein
                        'hat': hh,       # hat
-                       'crazy eye': ee  # crazy eye
+                       'crazy eye': ee # crazy eye
                     }
 
         [sd,st,hh,ee] = self.select_accessories(accessories)
+
+        if self.tier == 'legendary':
+            hh = bb
 
         dino =     [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,hh,hh,hh,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
@@ -141,7 +144,37 @@ class dino_2(base_model):
                     [bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,dd,dd,ss,ss,ss,ss,oo,bb,bb,oo,bb,bb,bb,bb],
                     [bb,bb,oo,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb]]
 
+        if self.tier == 'legendary':
+            dino = self.add_crown(dino)
+
         return dino
+
+    def add_crown(self, dino, MASK = False):
+        """
+        overwrite pixels on dino to add a yellow crown
+        :param dino: 24 * 24 dino array
+        :return: modified dino array
+        """
+        dino = np.array(dino)
+        if MASK == False:
+            pixel = self.crown_yellow
+        
+        elif MASK == True:
+            pixel = 0
+        
+        dino[0, 10] = pixel
+        dino[1, 6] = pixel
+        dino[1, 9:11] = pixel
+        dino[1, 13] = pixel
+        dino[2, 6:8] = pixel
+        dino[2, 9:11] = pixel
+        dino[2, 12:14] = pixel
+        dino[3, 7:13] = pixel
+
+        self.properties['crown'] = 1
+
+        return dino
+
 
     def get_mask(self):
 
@@ -178,7 +211,10 @@ class dino_2(base_model):
                     [bb,bb,bb,oo,ss,ss,ss,ss,dd,dd,dd,ss,ss,ss,ss,oo,oo,oo,oo,oo,bb,oo,bb,bb],
                     [bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,dd,dd,ss,ss,ss,ss,oo,bb,bb,oo,bb,bb,bb,bb],
                     [bb,bb,oo,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb]]  
-                    
+
+        if self.tier == 'legendary':
+            mask = self.add_crown(mask,MASK=True)
+
         return mask
 
 
@@ -197,18 +233,16 @@ class dino_3(base_model):
         gg = (255,153,153) # pink red
 
         # accessories
+        cs = [ss,(102,178,255)] 
+        lo = [ss,(102,178,255)]
+ 
 
-        # cry
-        cs = [(102,178,255),ss] #[tear color, skin color]
-        cry = self.yes_or_no()
-        cs = cs[cry]
+        accessories = {'drool': lo,     # drool
+                       'cry': cs,      # vein
+                       'crazy eye': ee # crazy eye
+                    }
 
-        # drool
-        ls = [(153,204,255),ss]
-        lo = [(102,178,255),oo]
-        drool = self.yes_or_no()
-        ls = ls[drool]
-        lo = lo[drool]
+        [lo,cs,ee] = self.select_accessories(accessories)
 
         dino =     [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 
@@ -226,22 +260,54 @@ class dino_3(base_model):
                     [oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,ww,bb,ww,bb,ww,oo,oo,bb], 
                     [oo,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,oo,ww,ww,ww,bb,bb,ww,oo,ss,oo,oo], 
                     [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,oo,gg,ww,bb,bb,ww,oo,oo,ss,ss,oo], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ls,lo,gg,gg,gg,ww,oo,oo,ss,ss,ss,oo], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,lo,lo,oo,oo,oo,oo,ss,ss,ss,ss,oo], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,ls,ls,ss,ss,ss,ss,ss,ss,ss,oo,oo], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,ls,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ls,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,oo,oo,oo,oo,oo,bb,bb,bb,bb,bb]]
+                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,lo,lo,gg,gg,gg,ww,oo,oo,ss,ss,ss,oo], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,lo,lo,lo,oo,oo,oo,oo,ss,ss,ss,ss,oo], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,lo,lo,ss,ss,ss,ss,ss,ss,ss,oo,oo], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,lo,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,lo,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,lo,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,lo,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,lo,oo,oo,oo,oo,oo,bb,bb,bb,bb,bb]]
+
+        if self.tier == 'legendary':
+            dino = self.add_crown(dino)
 
         return dino
     
 
+    def add_crown(self, dino, MASK = False):
+        """
+        overwrite pixels on dino to add a yellow crown
+        :param dino: 24 * 24 dino array
+        :return: modified dino array
+        """
+        dino = np.array(dino)
+        if MASK == False:
+            pixel = self.crown_yellow
+        
+        elif MASK == True:
+            pixel = 0
+        
+        dino[1,2:4] = pixel
+        dino[2,3:5] = pixel
+        dino[3, 3:6] = pixel
+        dino[4, 0:2] = pixel
+        dino[4, 4:7] = pixel
+        dino[5, 1:5] = pixel
+        dino[6, 2:4] = pixel
+        dino[7, 3] = pixel
+        dino[8, 0:3] = pixel
+        dino[9, 1:3] = pixel
+
+        self.properties['crown'] = 1
+
+        return dino
+
+
     def get_mask(self):
         # base
         bb = 255
-        oo = ss = ww = ee = gg = cs = ls = lo = 0
+        oo = ss = ww = ee = gg = cs = lo = 0
 
         mask =     [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb], 
@@ -259,14 +325,18 @@ class dino_3(base_model):
                     [oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,ww,bb,ww,bb,ww,oo,oo,bb], 
                     [oo,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,oo,ww,ww,ww,bb,bb,ww,oo,ss,oo,oo], 
                     [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,oo,gg,ww,bb,bb,ww,oo,oo,ss,ss,oo], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ls,lo,gg,gg,gg,ww,oo,oo,ss,ss,ss,oo], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,lo,lo,oo,oo,oo,oo,ss,ss,ss,ss,oo], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,ls,ls,ss,ss,ss,ss,ss,ss,ss,oo,oo], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,ls,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ls,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb], 
-                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ls,oo,oo,oo,oo,oo,bb,bb,bb,bb,bb]]
+                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,lo,lo,gg,gg,gg,ww,oo,oo,ss,ss,ss,oo], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,lo,lo,lo,oo,oo,oo,oo,ss,ss,ss,ss,oo], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,lo,lo,ss,ss,ss,ss,ss,ss,ss,oo,oo], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,ss,lo,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,lo,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,cs,ss,ss,ss,lo,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,lo,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb], 
+                    [ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,lo,oo,oo,oo,oo,oo,bb,bb,bb,bb,bb]]
+        
+        if self.tier == 'legendary':
+            mask = self.add_crown(mask,MASK=True)
+        
         return mask
 
 
@@ -424,14 +494,13 @@ class dino_4(base_model):
         :param dino: 24 * 24 dino array
         :return: modified dino array
         """
-        crown_yellow = (255, 234, 0)
 
-        dino[0, 9] = crown_yellow
-        dino[0, 11:13] = crown_yellow
-        dino[0, 14] = crown_yellow
+        dino[0, 9] = self.crown_yellow
+        dino[0, 11:13] = self.crown_yellow
+        dino[0, 14] = self.crown_yellow
 
-        dino[1, 9:15] = crown_yellow
-        dino[2, 9:15] = crown_yellow
+        dino[1, 9:15] = self.crown_yellow
+        dino[2, 9:15] = self.crown_yellow
 
         return dino
 
