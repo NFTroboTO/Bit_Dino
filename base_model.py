@@ -1,4 +1,4 @@
-from random import randint, seed
+from random import randint, seed, sample
 
 import numpy as np
 import webcolors
@@ -42,8 +42,6 @@ class base_model():
         self.w = (255,255,255) # some parts always white, ie, teeth, eyewhite
         # skin
         self.s,self.s_actual,self.s_closet = self.set_part_color()
-        # teeth
-        self.t = self.w
         # du zi
         self.d,self.d_actual,self.d_closet = self.set_part_color()
         # eye
@@ -59,7 +57,8 @@ class base_model():
         # Epic: Three of 1-4
         # Legendary: All of 2-5
         self.accessories = ['crazyeye','hat','tattoo','sunglasses','crown']
-        self.properties = {'smoke':0,'cry':0,'drool':0,'crazyeye':0,'hat':0,'tattoo':0,'sunglasses':0,'crown':0}
+        #self.properties = {'smoke':0,'cry':0,'drool':0,'crazyeye':0,'hat':0,'tattoo':0,'sunglasses':0,'crown':0}
+        
 
         self.choose_tier(tier)
 
@@ -68,30 +67,54 @@ class base_model():
 
         if tier == 'common':
             self.bg = Image.open('backgrounds/common1.png')
-
-            self.properties['crazyeye'] = self.yes_or_no()
-            self.e = self.e[self.properties['crazyeye']]
+            self.num_of_acc = 1
 
             #TODO:
             # choose accessories
 
         elif tier == 'rare':
             self.bg = Image.open('backgrounds/rare1.png')
-            self.properties['crazyeye'] = self.yes_or_no()
-            self.e = self.e[self.properties['crazyeye']]
+            self.num_of_acc = 2
 
         elif tier == 'epic':
             self.bg = Image.open('backgrounds/epic1.png')
-            self.properties['crazyeye'] = self.yes_or_no()
-            self.e = self.e[self.properties['crazyeye']]
+            self.num_of_acc = 3
 
         elif tier == 'legendary':
 
             self.bg = Image.open('backgrounds/legendary.png')
-            self.properties['crazyeye'] = self.yes_or_no()
-            self.e = self.e[self.properties['crazyeye']]
+            self.num_of_acc = -1 # means every possible accessories
 
             self.properties['crown'] = 1
+
+    def add_properties(self, accessories):
+
+        properties = {} # init an empty dict for storing properties
+
+        for acc in accessories:
+            properties[acc] = 0
+
+        return properties
+
+    def select_accessories(self,accessories):
+
+        # select self.num_of_acc accessories based on tier 
+        accs = list(accessories.keys())
+        selected = sample(accs, self.num_of_acc)
+
+        self.properties = self.add_properties(accs)
+
+        # set selected accessories
+        for acc in selected:
+            self.properties[acc] = 1
+
+        # set accessories according to property dictionary        
+        acc_pixel = []
+        for acc in accs:
+            curr_acc = accessories[acc][self.properties[acc]]
+            acc_pixel.append(curr_acc)
+        
+        return acc_pixel
 
     def yes_or_no(self):
 

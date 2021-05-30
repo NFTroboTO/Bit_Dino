@@ -7,6 +7,8 @@ TODO:
 need to store the accessories info and return it to generate.py
 
 '''
+from random import randint, sample
+
 import numpy as np
 
 from base_model import base_model
@@ -98,12 +100,21 @@ class dino_2(base_model):
         bb = self.b
         oo = self.o
         ss = self.s
-        hh = self.h
-        ee = self.e
         dd = self.d
-        tt = self.t   
 
         # accessories
+        sd = [(153,204,255),ss] # drool  
+        st = [(63, 81, 181),ss] # vein
+        hh = [self.h, bb] # hat
+        ee = self.e # crazy eye
+
+        accessories = {'drool': sd,     # drool
+                       'vein': st,      # vein
+                       'hat': hh,       # hat
+                       'crazy eye': ee  # crazy eye
+                    }
+
+        [sd,st,hh,ee] = self.select_accessories(accessories)
 
         dino =     [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,hh,hh,hh,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
@@ -113,19 +124,19 @@ class dino_2(base_model):
                     [bb,bb,bb,bb,oo,oo,oo,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb,bb,bb],
                     [bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb,bb],
                     [bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb,bb],
-                    [bb,bb,oo,oo,ss,ss,ss,ee,ss,ss,ss,ss,ee,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb],
-                    [bb,bb,oo,ss,ss,ss,ee,ee,ee,ss,ss,ee,ee,ee,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb],
-                    [bb,bb,oo,ss,ss,ss,ss,ee,ss,ss,ss,ss,ee,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb],
-                    [bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb],
-                    [bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb],
-                    [bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,oo,ss,ss,ss,ss,oo,ss,oo,ss,oo,bb,bb],
-                    [bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,tt,oo,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb],
-                    [bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,tt,tt,oo,oo,ss,ss,ss,ss,ss,oo,bb,bb],
-                    [bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,tt,ss,oo,oo,oo,oo,oo,oo,oo,bb,bb],
-                    [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,oo,oo,bb,bb,bb,bb],
-                    [bb,bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb,bb],
-                    [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,oo,oo,oo,oo,oo,bb,bb],
-                    [bb,bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,ss,ss,ss,oo,oo,oo,oo,oo,oo,oo,oo,bb,bb],
+                    [bb,bb,oo,oo,ss,ss,ss,oo,ss,ss,ss,ss,oo,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb,bb],
+                    [bb,bb,oo,ss,ss,ss,oo,ee,oo,ss,ss,oo,ee,oo,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb],
+                    [bb,bb,oo,ss,ss,ss,st,oo,ss,ss,ss,ss,oo,ss,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb],
+                    [bb,bb,oo,ss,ss,st,ss,ss,st,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,oo,bb,bb,bb],
+                    [bb,bb,oo,ss,ss,st,ss,ss,st,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,ss,oo,oo,bb,bb],
+                    [bb,bb,oo,oo,ss,st,ss,st,ss,ss,ss,ss,oo,ss,ss,ss,ss,oo,ss,oo,ss,oo,bb,bb],
+                    [bb,bb,bb,oo,ss,ss,st,ss,ss,ss,ss,sd,sd,oo,ss,ss,ss,ss,ss,ss,ss,oo,bb,bb],
+                    [bb,bb,bb,oo,ss,ss,st,ss,ss,ss,ss,ss,sd,sd,oo,oo,ss,ss,ss,ss,ss,oo,bb,bb],
+                    [bb,bb,bb,oo,oo,st,ss,ss,ss,ss,ss,ss,ss,sd,sd,oo,oo,oo,oo,oo,oo,oo,bb,bb],
+                    [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,ss,sd,ss,oo,oo,oo,oo,oo,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,ss,ss,ss,ss,ss,ss,sd,ss,ss,oo,bb,bb,bb,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,oo,oo,ss,ss,ss,ss,ss,ss,sd,ss,oo,oo,bb,oo,oo,oo,oo,oo,bb,bb],
+                    [bb,bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,ss,ss,sd,oo,oo,oo,oo,oo,oo,oo,oo,bb,bb],
                     [bb,bb,bb,oo,ss,ss,ss,ss,dd,dd,dd,ss,ss,ss,ss,oo,oo,oo,oo,oo,bb,oo,bb,bb],
                     [bb,bb,oo,oo,ss,ss,ss,dd,dd,dd,dd,dd,ss,ss,ss,ss,oo,bb,bb,oo,bb,bb,bb,bb],
                     [bb,bb,oo,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb]]
@@ -137,8 +148,6 @@ class dino_2(base_model):
         bb = 255
 
         oo = ss = hh = ee = dd = tt = 0
-
-        # accessories
 
         mask =     [[bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,hh,hh,hh,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb],
@@ -166,7 +175,6 @@ class dino_2(base_model):
                     [bb,bb,oo,ss,ss,ss,dd,dd,dd,dd,dd,dd,dd,ss,ss,ss,oo,oo,bb,bb,bb,bb,bb,bb]]  
                     
         return mask
-
 
 
 class dino_3(base_model):
@@ -345,30 +353,30 @@ class dino_4(base_model):
                     [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,oo,bb,bb,bb,bb,bb]]
 
         if self.properties['crown']:
-            mask = [[bb, bb, bb, bb, bb, bb, bb, bb, bb, ww, bb, ww, ww, bb, ww, bb, bb, bb, bb, bb, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, bb, bb, bb, bb, bb, oo, ww, ww, ww, ww, oo, bb, bb, bb, bb, bb, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, bb, bb, oo, oo, oo, pp, pp, ww, ww, pp, pp, oo, oo, oo, bb, bb, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, bb, oo, pp, pp, pp, ss, pp, ww, ww, pp, ss, pp, pp, pp, oo, bb, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, bb, oo, oo, pp, pp, pp, pp, pp, pp, pp, pp, pp, pp, oo, oo, bb, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, bb, oo, oo, pp, pp, pp, pp, pp, pp, pp, pp, pp, pp, oo, oo, bb, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, oo, oo, ss, pp, pp, pp, pp, pp, pp, pp, pp, pp, pp, ss, oo, oo, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, oo, oo, ss, ss, pp, pp, pp, pp, pp, pp, pp, pp, ss, ss, oo, oo, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, bb, oo, ss, ee, ww, pp, ee, pp, pp, ee, pp, ww, ee, ss, oo, bb, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, bb, oo, ss, ee, ww, oo, ee, pp, pp, ee, oo, ww, ee, ss, oo, bb, bb, bb, bb, bb],
-                    [bb, bb, bb, oo, oo, pp, oo, ss, pp, pp, pp, pp, pp, pp, pp, pp, ss, oo, ss, oo, oo, bb, bb, bb],
-                    [bb, bb, bb, oo, pp, pp, oo, ss, ss, pp, pp, pp, pp, pp, pp, ss, ss, oo, pp, pp, oo, bb, bb, bb],
-                    [bb, bb, oo, pp, pp, pp, ss, oo, ss, ss, oo, ss, ss, oo, ss, ss, oo, ss, pp, pp, pp, oo, bb, bb],
-                    [bb, bb, oo, pp, pp, pp, ss, dd, oo, oo, zz, zz, zz, zz, oo, oo, dd, ss, ss, pp, pp, ss, oo, bb],
-                    [bb, oo, ss, pp, pp, ss, ss, dd, zz, dd, oo, oo, oo, oo, dd, zz, dd, ss, oo, ss, ss, ww, oo, bb],
-                    [bb, oo, ww, ss, ss, oo, dd, zz, zz, zz, zz, zz, zz, zz, zz, zz, zz, dd, oo, ww, oo, oo, bb, bb],
-                    [bb, bb, oo, oo, ww, oo, oo, dd, dd, zz, zz, zz, zz, zz, zz, zz, zz, oo, ss, oo, oo, bb, bb, bb],
-                    [bb, bb, bb, oo, oo, pp, pp, dd, dd, zz, zz, zz, zz, zz, zz, dd, dd, dd, pp, oo, bb, bb, bb, bb],
-                    [bb, bb, bb, oo, pp, pp, pp, dd, dd, dd, dd, dd, dd, dd, dd, dd, dd, pp, pp, pp, oo, bb, bb, bb],
-                    [bb, bb, bb, oo, ss, pp, pp, ss, oo, dd, dd, dd, dd, dd, dd, dd, ss, pp, pp, pp, oo, bb, bb, bb],
-                    [bb, bb, bb, bb, oo, ss, ss, ss, oo, oo, dd, dd, dd, dd, oo, ss, ss, pp, pp, ss, oo, bb, bb, bb],
-                    [bb, bb, bb, bb, oo, ww, ww, ss, oo, bb, oo, oo, oo, oo, oo, ss, ss, ss, ss, oo, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, bb, oo, oo, oo, bb, bb, bb, bb, bb, bb, bb, oo, ss, ww, ww, oo, bb, bb, bb, bb],
-                    [bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, bb, oo, oo, oo, bb, bb, bb, bb, bb]]
+            mask = [[bb,bb,bb,bb,bb,bb,bb,bb,bb,ww,bb,ww,ww,bb,ww,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,ww,ww,ww,ww,oo,bb,bb,bb,bb,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,bb,oo,oo,oo,pp,pp,ww,ww,pp,pp,oo,oo,oo,bb,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,pp,pp,pp,ss,pp,ww,ww,pp,ss,pp,pp,pp,oo,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,oo,pp,pp,pp,pp,pp,pp,pp,pp,pp,pp,oo,oo,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,oo,pp,pp,pp,pp,pp,pp,pp,pp,pp,pp,oo,oo,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,oo,oo,ss,pp,pp,pp,pp,pp,pp,pp,pp,pp,pp,ss,oo,oo,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,oo,oo,ss,ss,pp,pp,pp,pp,pp,pp,pp,pp,ss,ss,oo,oo,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,ss,ee,ww,pp,ee,pp,pp,ee,pp,ww,ee,ss,oo,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,ss,ee,ww,oo,ee,pp,pp,ee,oo,ww,ee,ss,oo,bb,bb,bb,bb,bb],
+                    [bb,bb,bb,oo,oo,pp,oo,ss,pp,pp,pp,pp,pp,pp,pp,pp,ss,oo,ss,oo,oo,bb,bb,bb],
+                    [bb,bb,bb,oo,pp,pp,oo,ss,ss,pp,pp,pp,pp,pp,pp,ss,ss,oo,pp,pp,oo,bb,bb,bb],
+                    [bb,bb,oo,pp,pp,pp,ss,oo,ss,ss,oo,ss,ss,oo,ss,ss,oo,ss,pp,pp,pp,oo,bb,bb],
+                    [bb,bb,oo,pp,pp,pp,ss,dd,oo,oo,zz,zz,zz,zz,oo,oo,dd,ss,ss,pp,pp,ss,oo,bb],
+                    [bb,oo,ss,pp,pp,ss,ss,dd,zz,dd,oo,oo,oo,oo,dd,zz,dd,ss,oo,ss,ss,ww,oo,bb],
+                    [bb,oo,ww,ss,ss,oo,dd,zz,zz,zz,zz,zz,zz,zz,zz,zz,zz,dd,oo,ww,oo,oo,bb,bb],
+                    [bb,bb,oo,oo,ww,oo,oo,dd,dd,zz,zz,zz,zz,zz,zz,zz,zz,oo,ss,oo,oo,bb,bb,bb],
+                    [bb,bb,bb,oo,oo,pp,pp,dd,dd,zz,zz,zz,zz,zz,zz,dd,dd,dd,pp,oo,bb,bb,bb,bb],
+                    [bb,bb,bb,oo,pp,pp,pp,dd,dd,dd,dd,dd,dd,dd,dd,dd,dd,pp,pp,pp,oo,bb,bb,bb],
+                    [bb,bb,bb,oo,ss,pp,pp,ss,oo,dd,dd,dd,dd,dd,dd,dd,ss,pp,pp,pp,oo,bb,bb,bb],
+                    [bb,bb,bb,bb,oo,ss,ss,ss,oo,oo,dd,dd,dd,dd,oo,ss,ss,pp,pp,ss,oo,bb,bb,bb],
+                    [bb,bb,bb,bb,oo,ww,ww,ss,oo,bb,oo,oo,oo,oo,oo,ss,ss,ss,ss,oo,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,oo,oo,oo,bb,bb,bb,bb,bb,bb,bb,oo,ss,ww,ww,oo,bb,bb,bb,bb],
+                    [bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,bb,oo,oo,oo,bb,bb,bb,bb,bb]]
 
         return mask
 
