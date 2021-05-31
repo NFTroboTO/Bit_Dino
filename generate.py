@@ -61,8 +61,6 @@ seedID = 1704
 
 dinos = [dino_1,dino_2,dino_3,dino_4]
 
-dinos = [dino_2,dino_3]
-
 for n,model in enumerate(dinos):
 
     dir = "../pixel_dinos/dino_"+str(n+1)
@@ -71,8 +69,12 @@ for n,model in enumerate(dinos):
         os.mkdir(dir)
 
     print('Generating Bit Dino '+str(n+1) + ' ...')
-    # random generate 5 dino
-    for i in range(0,50):
+
+    start_index = 0
+    if model == dino_4:
+        start_index = 30
+
+    for i in range(start_index, 50):
 
         # skip common for dino 4
         if n == 3 and i < 30:
@@ -94,6 +96,7 @@ for n,model in enumerate(dinos):
 
         # convert the pixels into an array using numpy
         bitdino =  model(seedID,tier)# can use (random) to select different dino in the future
+        bitdino.get_dino()
         pixelDino = np.array(bitdino.get_dino(), dtype=np.uint8)
         mask = np.array(bitdino.get_mask(), dtype=np.uint8)
         bg = bitdino.bg.resize((24,24), resample=0)
